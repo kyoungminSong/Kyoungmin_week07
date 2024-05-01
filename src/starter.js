@@ -23,7 +23,7 @@ const radiusScale = d3.scaleLinear().domain([0, 100]).range([0, minLen]);
 const attributes = [
   "Quality",
   "Speed",
-  "value",
+  "Value",
   "Healthy",
   "Clean",
   "Friendly",
@@ -38,7 +38,7 @@ const angleScale = d3
   .range([0, 2 * Math.PI]);
 
 //color
-const pointColor = "blue";
+const pointColor = "rgb(255, 135, 51)";
 
 // line radial
 const radarLine = d3
@@ -98,10 +98,10 @@ d3.json("data/best_burgers.json").then((raw_data) => {
     .attr("cy", 0)
     .attr("r", (d) => radiusScale(d))
     .attr("fill", "white")
-    .attr("fill-opacity", 0.03)
-    .attr("stroke", "black")
+    .attr("fill-opacity", 0.01)
+    .attr("stroke", "rgb(141, 92, 62")
     .attr("stroke-opacity", 0.3)
-    .attr("stroke-width", 0.5);
+    .attr("stroke-width", 0.3);
 
   angleAxis = g
     .selectAll("angle-axis")
@@ -112,9 +112,9 @@ d3.json("data/best_burgers.json").then((raw_data) => {
     .attr("y1", 0)
     .attr("x2", (d, i) => getXPos(100, i)) //d는 데이터 하나하나, i는 순서
     .attr("y2", (d, i) => getYPos(100, i)) //최대가 100이라서
-    .attr("stroke", "black")
-    .attr("stroke-opacity", 0.3)
-    .attr("stroke-width", 0.5);
+    .attr("stroke", "rgb(141, 92, 62")
+    .attr("stroke-opacity", 1)
+    .attr("stroke-width", 0.1);
 
   labels = g
     .selectAll("labels")
@@ -125,8 +125,8 @@ d3.json("data/best_burgers.json").then((raw_data) => {
     .attr("y", (d, i) => getYPos(120, i))
     .text((d) => d)
     .attr("class", "labels")
-    .attr("fill", "black")
-    .attr("fill-opacity", 0.3);
+    .attr("fill", "rgb(141, 92, 62)")
+    .attr("fill-opacity", 0.8);
 
   path = g
     .append("path")
@@ -134,8 +134,8 @@ d3.json("data/best_burgers.json").then((raw_data) => {
     .attr("d", radarLine)
     .attr("fill", pointColor)
     .attr("stroke", pointColor)
-    .attr("stroke-width", 1.3)
-    .style("fill-opacity", 0.25);
+    .attr("stroke-width", 2)
+    .style("fill-opacity", 0.3);
 
   d3.select("#burger-name").text(selectedBurger.Brand);
 });

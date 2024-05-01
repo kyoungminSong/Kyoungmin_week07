@@ -23,7 +23,7 @@
   },
   {
     "Brand": "Smashburger",
-    "Food": 61,
+    "Quality": 61,
     "Speed": 61,
     "Value": 52,
     "Healthy": 26,
@@ -48,10 +48,10 @@
     "Quality": 55, 
     "Speed": 49,
     "Value": 41,
-    "Healthy_Options": 23,
-    "Overall_Cleanliness": 56,
-    "Staff_Friendliness": 58,
-    "Curb_Appeal": 57,
+    "Healthy": 23,
+    "Clean": 56,
+    "Friendly": 58,
+    "Curb": 57,
     "Atmosphere": 48
   },
   {

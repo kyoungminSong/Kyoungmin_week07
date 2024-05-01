@@ -6,7 +6,7 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #ffffff;
+  background-color: #f5ebdc;
 }
 
 .titles {
@@ -30,15 +30,17 @@ h1 {
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 2px;
-  color: rgb(0, 0, 0);
+  color: rgb(141, 92, 62);
 }
 
 #burger-name {
-  font-size: 48px;
+  font-size: 60px;
   font-weight: 600;
   margin-bottom: 15px;
   line-height: 1.1;
-  color: rgb(0, 0, 0);
+  color: rgb(255, 135, 51);
+  text-transform: uppercase;
+  font-style: italic;
 }
 
 #options {
@@ -49,8 +51,7 @@ h1 {
 }
 
 .options-label {
-  color: rgb(180, 180, 180);
+  color: rgb(141, 92, 62);
   margin-right: 6px;
   font-size: 15px;
-  font-style: italic;
 }
