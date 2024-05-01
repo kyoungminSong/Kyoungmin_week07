@@ -1,1 +1,1 @@
-![image](https://github.com/kyoungminSong/Kyoungmin_week07/assets/162668642/417d4134-f7be-40c5-b3c2-48f22abaf626)
+![image](https://github.com/kyoungminSong/Kyoungmin_week07/assets/162668642/2a06cbe8-45e3-45c6-8da6-44716c6a7025)
