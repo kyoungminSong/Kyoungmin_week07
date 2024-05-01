@@ -21,12 +21,14 @@ const g = svg
 let minLen = d3.min([height / 2 - margin.top, width / 2 - margin.right]); //높이와 너비 중 짧은 값을 자동으로 결정
 const radiusScale = d3.scaleLinear().domain([0, 100]).range([0, minLen]);
 const attributes = [
-  "pace",
-  "shooting",
-  "passing",
-  "dribbling",
-  "defending",
-  "physic",
+  "Quality",
+  "Speed",
+  "value",
+  "Healthy",
+  "Clean",
+  "Friendly",
+  "Curb",
+  "Atmosphere",
 ];
 const radius = [0, 25, 50, 75, 100];
 
@@ -36,14 +38,14 @@ const angleScale = d3
   .range([0, 2 * Math.PI]);
 
 //color
-const pointColor = "#42e695";
+const pointColor = "blue";
 
 // line radial
 const radarLine = d3
   .lineRadial()
   .angle((d, i) => angleScale(i))
   .curve(d3.curveCardinalClosed)
-  .radius((d) => radiusScale(selectedPlayer[d]));
+  .radius((d) => radiusScale(selectedBurger[d]));
 
 // svg elements
 
@@ -53,25 +55,25 @@ const radarLine = d3
 // data
 
 let data = [];
-let selectedPlayer; //레이더차트 만드는 데이터
+let selectedBurger; //레이더차트 만드는 데이터
 
 let radiusAxis, angleAxis, labels;
 let path;
 
-let players;
-let selectedName = "H. Son";
+let burgers;
+let selectedName = "Five Guys";
 
 d3.json("data/best_burgers.json").then((raw_data) => {
-  data = raw_data.filter((d) => d.overall > 85); //데이터 필터링
-  selectedPlayer = data.filter((d) => d.short_name == selectedName)[0]; //원하는 선수 필터링
-  // console.log(selectedPlayer);
+  data = raw_data;
 
-  players = [...new Set(data.map((d) => d.short_name))];
-  // console.log(players);
+  burgers = [...new Set(data.map((d) => d.Brand))];
+  // console.log(burgers);
+
+  selectedBurger = data.filter((d) => d.Brand == selectedName)[0];
 
   const dropdown = document.getElementById("options");
 
-  players.map((d) => {
+  burgers.map((d) => {
     const option = document.createElement("option");
     option.value = d; //value=컴퓨터가 인식하는 데이터
     option.innerHTML = d; //innerHTML=페이지에 나타나는 값
@@ -83,7 +85,7 @@ d3.json("data/best_burgers.json").then((raw_data) => {
   dropdown.addEventListener("change", function () {
     selectedName = dropdown.value;
     // console.log(selectedName);
-    updatePlayer(); //updatePlayer 함수실행
+    updateBrand(); //update 함수실행
   });
 
   // axis
@@ -97,7 +99,7 @@ d3.json("data/best_burgers.json").then((raw_data) => {
     .attr("r", (d) => radiusScale(d))
     .attr("fill", "white")
     .attr("fill-opacity", 0.03)
-    .attr("stroke", "white")
+    .attr("stroke", "black")
     .attr("stroke-opacity", 0.3)
     .attr("stroke-width", 0.5);
 
@@ -110,7 +112,7 @@ d3.json("data/best_burgers.json").then((raw_data) => {
     .attr("y1", 0)
     .attr("x2", (d, i) => getXPos(100, i)) //d는 데이터 하나하나, i는 순서
     .attr("y2", (d, i) => getYPos(100, i)) //최대가 100이라서
-    .attr("stroke", "white")
+    .attr("stroke", "black")
     .attr("stroke-opacity", 0.3)
     .attr("stroke-width", 0.5);
 
@@ -123,7 +125,7 @@ d3.json("data/best_burgers.json").then((raw_data) => {
     .attr("y", (d, i) => getYPos(120, i))
     .text((d) => d)
     .attr("class", "labels")
-    .attr("fill", "white")
+    .attr("fill", "black")
     .attr("fill-opacity", 0.3);
 
   path = g
@@ -135,7 +137,7 @@ d3.json("data/best_burgers.json").then((raw_data) => {
     .attr("stroke-width", 1.3)
     .style("fill-opacity", 0.25);
 
-  d3.select("#player-name").text(selectedPlayer.long_name);
+  d3.select("#burger-name").text(selectedBurger.Brand);
 });
 
 ////// function
@@ -152,40 +154,40 @@ const getYPos = (dist, index) => {
 ////////////////////////////////////////////////////////////////////
 /////////////////////////////  Update  /////////////////////////////
 
-const updatePlayer = () => {
-  selectedPlayer = data.filter((d) => d.short_name == selectedName)[0];
-  console.log(selectedPlayer);
+const updateBrand = () => {
+  selectedBurger = data.filter((d) => d.Brand == selectedName)[0];
+  // console.log(selectedBurger);
 
-  radarLine.radius((d) => radiusScale(selectedPlayer[d]));
+  radarLine.radius((d) => radiusScale(selectedBurger[d]));
 
   path.transition().duration(500).attr("d", radarLine); //duration(1000)이 1초
 
-  d3.select("#player-name").text(selectedPlayer.long_name);
+  d3.select("#burger-name").text(selectedBurger.Brand);
 };
 
-// Resize
-window.addEventListener("resize", () => {
-  width = parseInt(d3.select("#svg-container").style("width"));
-  height = parseInt(d3.select("#svg-container").style("height"));
-  // console.log(width + ", " + height);
-  g.attr("transform", `translate(${width / 2}, ${height / 2})`);
+// // Resize
+// window.addEventListener("resize", () => {
+//   width = parseInt(d3.select("#svg-container").style("width"));
+//   height = parseInt(d3.select("#svg-container").style("height"));
+//   // console.log(width + ", " + height);
+//   g.attr("transform", `translate(${width / 2}, ${height / 2})`);
 
-  //scale
-  minLen = d3.min([height / 2 - margin.top, width / 2 - margin.right]);
-  radiusScale.range([0, minLen]);
+//   //scale
+//   minLen = d3.min([height / 2 - margin.top, width / 2 - margin.right]);
+//   radiusScale.range([0, minLen]);
 
-  //axis
-  radiusAxis.attr("r", (d) => radiusScale(d));
+//   //axis
+//   radiusAxis.attr("r", (d) => radiusScale(d));
 
-  angleAxis
-    .attr("x2", (d, i) => getXPos(100, i))
-    .attr("y2", (d, i) => getYPos(100, i));
+//   angleAxis
+//     .attr("x2", (d, i) => getXPos(100, i))
+//     .attr("y2", (d, i) => getYPos(100, i));
 
-  radarLine.radius((d) => radiusScale(selectedPlayer[d]));
+//   radarLine.radius((d) => radiusScale(selectedBurger[d]));
 
-  path.attr("d", radarLine);
+//   path.attr("d", radarLine);
 
-  labels
-    .attr("x", (d, i) => getXPos(120, i)) //숫자는 100보다만 크면 됨
-    .attr("y", (d, i) => getYPos(120, i));
-});
+//   labels
+//     .attr("x", (d, i) => getXPos(120, i)) //숫자는 100보다만 크면 됨
+//     .attr("y", (d, i) => getYPos(120, i));
+// });

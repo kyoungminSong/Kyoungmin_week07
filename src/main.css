@@ -6,7 +6,7 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #231a3e;
+  background-color: #ffffff;
 }
 
 .titles {
@@ -30,19 +30,19 @@ h1 {
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 2px;
-  color: rgb(232, 232, 232);
+  color: rgb(0, 0, 0);
 }
 
-#player-name {
+#burger-name {
   font-size: 48px;
   font-weight: 600;
   margin-bottom: 15px;
   line-height: 1.1;
-  color: white;
+  color: rgb(0, 0, 0);
 }
 
 #options {
-  color: rgb(181, 181, 181);
+  color: rgb(0, 0, 0);
   border: 1px solid gray;
   background-color: rgba(255, 255, 255, 0.2);
   outline: 0;
