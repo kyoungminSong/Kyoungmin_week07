@@ -61,7 +61,7 @@ let path;
 let players;
 let selectedName = "H. Son";
 
-d3.json("data/fifa23_maleplayers.json").then((raw_data) => {
+d3.json("data/best_burgers.json").then((raw_data) => {
   data = raw_data.filter((d) => d.overall > 85); //데이터 필터링
   selectedPlayer = data.filter((d) => d.short_name == selectedName)[0]; //원하는 선수 필터링
   // console.log(selectedPlayer);
