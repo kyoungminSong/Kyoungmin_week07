@@ -44,10 +44,9 @@ h1 {
 }
 
 #options {
-  color: rgb(0, 0, 0);
-  border: 1px solid gray;
-  background-color: rgba(255, 255, 255, 0.2);
-  outline: 0;
+  color: rgb(141, 92, 62, 0.8);
+  border: 1px solid rgba(255, 136, 51, 0.5);
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .options-label {

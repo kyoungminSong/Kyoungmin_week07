@@ -121,8 +121,8 @@ d3.json("data/best_burgers.json").then((raw_data) => {
     .data(attributes)
     .enter()
     .append("text")
-    .attr("x", (d, i) => getXPos(120, i)) //숫자는 100보다만 크면 됨
-    .attr("y", (d, i) => getYPos(120, i))
+    .attr("x", (d, i) => getXPos(115, i)) //숫자는 100보다만 크면 됨
+    .attr("y", (d, i) => getYPos(115, i))
     .text((d) => d)
     .attr("class", "labels")
     .attr("fill", "rgb(141, 92, 62)")
@@ -165,29 +165,29 @@ const updateBrand = () => {
   d3.select("#burger-name").text(selectedBurger.Brand);
 };
 
-// // Resize
-// window.addEventListener("resize", () => {
-//   width = parseInt(d3.select("#svg-container").style("width"));
-//   height = parseInt(d3.select("#svg-container").style("height"));
-//   // console.log(width + ", " + height);
-//   g.attr("transform", `translate(${width / 2}, ${height / 2})`);
+// Resize
+window.addEventListener("resize", () => {
+  width = parseInt(d3.select("#svg-container").style("width"));
+  height = parseInt(d3.select("#svg-container").style("height"));
+  // console.log(width + ", " + height);
+  g.attr("transform", `translate(${width / 2}, ${height / 2})`);
 
-//   //scale
-//   minLen = d3.min([height / 2 - margin.top, width / 2 - margin.right]);
-//   radiusScale.range([0, minLen]);
+  //scale
+  minLen = d3.min([height / 2 - margin.top, width / 2 - margin.right]);
+  radiusScale.range([0, minLen]);
 
-//   //axis
-//   radiusAxis.attr("r", (d) => radiusScale(d));
+  //axis
+  radiusAxis.attr("r", (d) => radiusScale(d));
 
-//   angleAxis
-//     .attr("x2", (d, i) => getXPos(100, i))
-//     .attr("y2", (d, i) => getYPos(100, i));
+  angleAxis
+    .attr("x2", (d, i) => getXPos(100, i))
+    .attr("y2", (d, i) => getYPos(100, i));
 
-//   radarLine.radius((d) => radiusScale(selectedBurger[d]));
+  radarLine.radius((d) => radiusScale(selectedBurger[d]));
 
-//   path.attr("d", radarLine);
+  path.attr("d", radarLine);
 
-//   labels
-//     .attr("x", (d, i) => getXPos(120, i)) //숫자는 100보다만 크면 됨
-//     .attr("y", (d, i) => getYPos(120, i));
-// });
+  labels
+    .attr("x", (d, i) => getXPos(120, i)) //숫자는 100보다만 크면 됨
+    .attr("y", (d, i) => getYPos(120, i));
+});
