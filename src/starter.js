@@ -123,7 +123,7 @@ d3.json("data/best_burgers.json").then((raw_data) => {
     .append("text")
     .attr("x", (d, i) => getXPos(115, i)) //숫자는 100보다만 크면 됨
     .attr("y", (d, i) => getYPos(115, i))
-    .text((d) => d)
+    .text((d) => d) //함수 넣어서 데이터랑 다른 텍스트 넣기 가능
     .attr("class", "labels")
     .attr("fill", "rgb(141, 92, 62)")
     .attr("fill-opacity", 0.8);
